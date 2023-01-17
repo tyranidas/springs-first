@@ -36,7 +36,7 @@ public class Animal {
 	
 	@ManyToOne
 	@JoinColumn(name = "species_id")   
-	private Species Species;
+	private Species species;
 	
 	@ManyToMany
 	@JoinTable( name = "person_animals",
@@ -77,11 +77,11 @@ public class Animal {
 	}
 
 	public Species getSpecies() {
-		return Species;
+		return species;
 	}
 
 	public void setSpecies(Species species) {
-		Species = species;
+		species = species;
 	}
 
 	public List<Person> getProp() {
@@ -94,7 +94,7 @@ public class Animal {
 
 	@Override
 	public String toString() {
-		return "Animal [color=" + color + ", name=" + name + ", sex=" + sex + ", Species=" + Species + "]";
+		return "Animal [color=" + color + ", name=" + name + ", sex=" + sex + ", Species=" + species + "]";
 	}
 	
 	

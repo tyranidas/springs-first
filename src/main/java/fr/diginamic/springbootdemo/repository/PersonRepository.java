@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import fr.diginamic.springbootdemo.model.Person;
@@ -11,6 +12,14 @@ import fr.diginamic.springbootdemo.model.Person;
 public interface PersonRepository extends CrudRepository<Person, Integer>{
 	List<Person> findByLastnameOrFirstname(String lastname, String firstname);
 	
-	@Query("from Person where age >= :age")
-	List<Person> findByAgeGREATER_THAN(Integer age);
+	
+//	List<Person> findByAgeGREATER_THAN(Integer age);
+	
+	@Query("from Person where age >= :minage and age <= :maxage")
+	List<Person> findByAge(
+			@Param("minage") Integer minAge,
+			@Param("maxage") Integer maxage);
+	
+	@Query ("SELECT p FROM Person p INNER JOIN Animal a INNER JOIN Species s where s.commonName = :name")
+	List<Person> findByCommunName(@Param("name") String name);
 }

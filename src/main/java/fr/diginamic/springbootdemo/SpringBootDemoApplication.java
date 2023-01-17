@@ -1,17 +1,12 @@
 package fr.diginamic.springbootdemo;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.diginamic.springbootdemo.model.Animal;
@@ -20,7 +15,6 @@ import fr.diginamic.springbootdemo.model.Species;
 import fr.diginamic.springbootdemo.repository.AnimalRepository;
 import fr.diginamic.springbootdemo.repository.PersonRepository;
 import fr.diginamic.springbootdemo.repository.SpeciesRepository;
-import fr.diginamic.springbootdemo.service.BavardService;
 
 
 @SpringBootApplication
@@ -58,8 +52,7 @@ public void run(String... args) throws Exception {
 	a.setColor("bleu");
 	a.setName("Bouboul");
 	a.setSex("F");
-	this.animalRepository.save(a);
-	System.out.println(a.getSpecies().getCommun_name());
+
 	Person p = new Person();
 	p.setAge(28);
 	p.setFirstname("Bob");
@@ -69,9 +62,23 @@ public void run(String... args) throws Exception {
 	System.out.println(this.speciesRepository.findByLatinNameIgnoreCase("Oryctolagus Cuniculus"));
 	System.out.println("requete personne");
 	System.out.println(this.personRepository.findByLastnameOrFirstname("Lamarque", null));
-	System.out.println(this.personRepository.findByAgeGREATER_THAN(25));
+//	System.out.println(this.personRepository.findByAgeGREATER_THAN(25));
 	System.out.println("requete animal");
-	//System.out.println(this.animalRepository.findBySpeciesCommonName("Chat"));
+	System.out.println(this.animalRepository.findAllBySpecies(s));
+	for (String colo : colorList)
+	{System.out.println(this.animalRepository.findAllByColor(colo));}
+	
+	System.out.println("via Query");
+	System.out.println(this.speciesRepository.findAllSpecies());
+	System.out.println(this.speciesRepository.findAllbyCommonName("Lapin"));
+	
+	System.out.println();
+	System.out.println(this.personRepository.findByAge(25, 50));
+	System.err.println(this.personRepository.findByCommunName("Chat"));
+	
+	System.out.println();
+	System.out.println(this.animalRepository.countBySex("M"));
+	System.out.println(this.animalRepository.countByCommunName("Chat"));
 }
 
 }
