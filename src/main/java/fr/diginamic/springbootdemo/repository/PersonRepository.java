@@ -13,7 +13,7 @@ public interface PersonRepository extends CrudRepository<Person, Integer>{
 	List<Person> findByLastnameOrFirstname(String lastname, String firstname);
 	
 	
-//	List<Person> findByAgeGREATER_THAN(Integer age);
+	List<Person> findByAgeGreaterThan(Integer age);
 	
 	@Query("from Person where age >= :minage and age <= :maxage")
 	List<Person> findByAge(

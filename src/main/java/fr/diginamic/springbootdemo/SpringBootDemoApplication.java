@@ -60,13 +60,14 @@ public void run(String... args) throws Exception {
 	System.out.println("requete espèce");
 	System.out.println(this.speciesRepository.findFirstByCommonName("Chat"));
 	System.out.println(this.speciesRepository.findByLatinNameIgnoreCase("Oryctolagus Cuniculus"));
+	
 	System.out.println("requete personne");
 	System.out.println(this.personRepository.findByLastnameOrFirstname("Lamarque", null));
-//	System.out.println(this.personRepository.findByAgeGREATER_THAN(25));
+	System.out.println(this.personRepository.findByAgeGreaterThan(25));
+	
 	System.out.println("requete animal");
 	System.out.println(this.animalRepository.findAllBySpecies(s));
-	for (String colo : colorList)
-	{System.out.println(this.animalRepository.findAllByColor(colo));}
+	System.out.println(this.animalRepository.findAllByColorIn(colorList));
 	
 	System.out.println("via Query");
 	System.out.println(this.speciesRepository.findAllSpecies());
@@ -79,6 +80,7 @@ public void run(String... args) throws Exception {
 	System.out.println();
 	System.out.println(this.animalRepository.countBySex("M"));
 	System.out.println(this.animalRepository.countByCommunName("Chat"));
+	System.out.println(this.animalRepository.countByCommunName("Loup"));
 }
 
 }

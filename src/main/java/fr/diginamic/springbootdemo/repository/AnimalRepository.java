@@ -12,7 +12,7 @@ import fr.diginamic.springbootdemo.model.Species;
 @Repository
 public interface AnimalRepository extends CrudRepository<Animal, Integer>{
 	List<Animal> findAllBySpecies (Species species);
-	List<Animal> findAllByColor (String color);
+	List<Animal> findAllByColorIn (List<String> color);
 	
 	@Query("SELECT COUNT(a) from Animal a where a.sex = :sex ")
 	Integer countBySex (@Param("sex") String sex);
