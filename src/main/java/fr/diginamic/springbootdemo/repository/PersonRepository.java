@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.diginamic.springbootdemo.model.Person;
 @Repository
-public interface PersonRepository extends CrudRepository<Person, Integer>{
+public interface PersonRepository extends CrudRepository<Person, Integer>, PersonRepositoryCustom{
 	List<Person> findByLastnameOrFirstname(String lastname, String firstname);
 	
 	
@@ -22,4 +22,8 @@ public interface PersonRepository extends CrudRepository<Person, Integer>{
 	
 	@Query ("SELECT p FROM Person p INNER JOIN Animal a INNER JOIN Species s where s.commonName = :name")
 	List<Person> findByCommunName(@Param("name") String name);
+	
+	
+		
+	
 }

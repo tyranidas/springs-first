@@ -14,6 +14,8 @@ import fr.diginamic.springbootdemo.model.Person;
 import fr.diginamic.springbootdemo.model.Species;
 import fr.diginamic.springbootdemo.repository.AnimalRepository;
 import fr.diginamic.springbootdemo.repository.PersonRepository;
+import fr.diginamic.springbootdemo.repository.PersonRepositoryCustom;
+import fr.diginamic.springbootdemo.repository.PersonRepositoryCustomlmpl;
 import fr.diginamic.springbootdemo.repository.SpeciesRepository;
 
 
@@ -31,6 +33,7 @@ public class SpringBootDemoApplication implements CommandLineRunner  {
 	@Autowired
 	SpeciesRepository speciesRepository;
 	
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootDemoApplication.class, args);
 	}
@@ -42,7 +45,7 @@ public class SpringBootDemoApplication implements CommandLineRunner  {
 @Override
 public void run(String... args) throws Exception {
 	
-	List<String> colorList = new ArrayList<>();
+/*	List<String> colorList = new ArrayList<>();
 	colorList.add("Noir");
 	colorList.add("Blanc");
 		
@@ -52,7 +55,7 @@ public void run(String... args) throws Exception {
 	a.setColor("bleu");
 	a.setName("Bouboul");
 	a.setSex("F");
-
+	//animalRepository.save(a);
 	Person p = new Person();
 	p.setAge(28);
 	p.setFirstname("Bob");
@@ -70,7 +73,7 @@ public void run(String... args) throws Exception {
 	System.out.println(this.animalRepository.findAllByColorIn(colorList));
 	
 	System.out.println("via Query");
-	System.out.println(this.speciesRepository.findAllSpecies());
+	System.out.println(this.speciesRepository.findAllSpeciesOrderByLatinName());
 	System.out.println(this.speciesRepository.findAllbyCommonName("Lapin"));
 	
 	System.out.println();
@@ -81,6 +84,9 @@ public void run(String... args) throws Exception {
 	System.out.println(this.animalRepository.countBySex("M"));
 	System.out.println(this.animalRepository.countByCommunName("Chat"));
 	System.out.println(this.animalRepository.countByCommunName("Loup"));
+	*/
+	personRepository.deletePersonsWithoutAnimal();
+	
 }
 
 }

@@ -1,6 +1,7 @@
 package fr.diginamic.springbootdemo.model;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -16,7 +17,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="person")
-@Component
 public class Person {
 	
 	@Id
@@ -36,7 +36,7 @@ public class Person {
 	@JoinTable( name = "person_animals",
     joinColumns = @JoinColumn( name = "person_id", referencedColumnName = "id" ),
     inverseJoinColumns = @JoinColumn( name = "animals_id", referencedColumnName = "id" ) )
-	private List<Animal> pet = new ArrayList<>();
+	Set<Animal> animals ;
 
 	public int getId() {
 		return id;
@@ -70,12 +70,12 @@ public class Person {
 		this.lastname = lastname;
 	}
 
-	public List<Animal> getPet() {
-		return pet;
+	public Set<Animal> getPet() {
+		return animals;
 	}
 
-	public void setPet(List<Animal> pet) {
-		this.pet = pet;
+	public void setPet(Set<Animal> animals) {
+		this.animals = animals;
 	}
 
 	@Override

@@ -14,8 +14,8 @@ public interface SpeciesRepository extends CrudRepository<Species, Integer> {
 	Species findFirstByCommonName (String name);
 	List<Species> findByLatinNameIgnoreCase (String name);
 	
-	@Query("from Species order by commonName")
-	List<Species> findAllSpecies();
+	@Query("from Species order by latinName")
+	List<Species> findAllSpeciesOrderByLatinName();
 	
 	@Query("from Species where commonName = :name ")
 	List<Species> findAllbyCommonName(@Param("name") String name);

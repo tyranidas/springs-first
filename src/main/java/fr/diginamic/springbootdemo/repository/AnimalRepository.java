@@ -17,7 +17,7 @@ public interface AnimalRepository extends CrudRepository<Animal, Integer>{
 	@Query("SELECT COUNT(a) from Animal a where a.sex = :sex ")
 	Integer countBySex (@Param("sex") String sex);
 	
-	@Query(value = "SELECT IF((SELECT COUNT(*) \r\n"
+	@Query(value = "SELECT IF((SELECT COUNT(*) "
 			+ "           FROM person as p "
 			+ "           INNER JOIN person_animals as p_a ON  p.id = p_a.person_id "
 			+ "           INNER JOIN animal as a ON a.id = p_a.animals_id "
